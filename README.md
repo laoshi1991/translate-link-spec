@@ -13,7 +13,10 @@ When provided with a Twitter (X) or YouTube link, this Skill directs any compati
 
 ## How it works
 
-This repository contains a pure **Agent Protocol (Prompt instructions)** rather than executable code. It relies on the AI Agent's built-in web browsing or tool-calling capabilities (e.g., Python `youtube-transcript-api` for YouTube transcripts) to read the content, and its LLM capabilities to perform the summarization and translation based on the rules defined in this repository.
+This repository contains a pure **Agent Protocol (Prompt instructions)** rather than executable code. It relies on the AI Agent's built-in web browsing or tool-calling capabilities. 
+- For **Twitter (X)**, the Agent reads the page text.
+- For **YouTube**, the Agent is explicitly instructed in `SKILL.md` to use Python (`youtube-transcript-api`) or CLI (`yt-dlp`) to fetch the transcript automatically.
+Once the content is retrieved, the Agent utilizes its LLM capabilities to perform the summarization and translation based on the rules defined in this repository.
 
 ## Installation & Usage
 

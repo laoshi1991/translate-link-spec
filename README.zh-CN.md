@@ -13,7 +13,10 @@
 
 ## 工作原理
 
-这个仓库包含的是纯粹的 **Agent 协议（Prompt 指令）**，而不是可执行的代码。它依赖于 AI Agent 内置的网页浏览或工具调用能力（例如使用 Python `youtube-transcript-api` 获取 YouTube 字幕）来读取内容，并利用 Agent 自身的 LLM（大语言模型）能力，基于本仓库中定义的规则来执行摘要和翻译。
+这个仓库包含的是纯粹的 **Agent 协议（Prompt 指令）**，而不是可执行的代码。它依赖于 AI Agent 内置的网页浏览或工具调用能力：
+- 对于 **Twitter (X)**，Agent 会直接读取网页文本。
+- 对于 **YouTube**，`SKILL.md` 中已经内置了明确的 Python 脚本（利用 `youtube-transcript-api`）供 Agent 在沙盒中执行以自动拉取视频字幕。
+获取内容后，它会利用 Agent 自身的 LLM（大语言模型）能力，基于本仓库中定义的规则来执行摘要和翻译。
 
 ## 安装与使用
 
