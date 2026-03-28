@@ -26,7 +26,9 @@ When a user provides a Twitter (X) or YouTube link:
     except Exception as e:
         print("Error:", e)
     ```
-  - **Method B (CLI):** If you have `yt-dlp` installed, run: `yt-dlp --write-auto-sub --sub-lang en --skip-download <URL>` and read the downloaded `.vtt` file.
+  - **Method B (CLI with yt-dlp - Very Reliable):** If `youtube-transcript-api` fails or is unavailable, use `yt-dlp`. Ensure it is installed (`pip install yt-dlp` or `brew install yt-dlp`), then run:
+    `yt-dlp --write-auto-sub --sub-lang en --skip-download "https://www.youtube.com/watch?v=VIDEO_ID"`
+    Then read the generated `.vtt` file to extract the text.
 If you are completely unable to access the link or extract the transcript, politely ask the user to paste the transcript. DO NOT substitute the actual video transcript with webpage comments or descriptions.
 
 ### Step 2: Load Rules
