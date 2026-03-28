@@ -13,7 +13,7 @@ When a user provides a Twitter (X) or YouTube link:
 
 ### Step 1: Retrieve Content
 - **For Twitter (X) links:** Fetch the text using web browsing capabilities or `curl` with a reader API (e.g., `https://r.jina.ai/`).
-- **For YouTube links:** You MUST extract the video transcript. Use one of the following methods:
+- **For YouTube links:** You MUST extract the **spoken video transcript** (subtitles). **DO NOT** use the webpage description, metadata, or user comments as the transcript. Use one of the following methods:
   - **Method A (Python - Recommended):** Use your terminal to install the API: `pip install youtube-transcript-api`. Then run a python script to get the text:
     ```python
     from youtube_transcript_api import YouTubeTranscriptApi
@@ -22,12 +22,12 @@ When a user provides a Twitter (X) or YouTube link:
     try:
         transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en', 'zh-CN', 'zh', 'ja', 'ko', 'es', 'fr', 'de'])
         text = " ".join([t['text'] for t in transcript])
-        print(text)
+        print("<TRANSCRIPT_START>\n" + text + "\n<TRANSCRIPT_END>")
     except Exception as e:
         print("Error:", e)
     ```
   - **Method B (CLI):** If you have `yt-dlp` installed, run: `yt-dlp --write-auto-sub --sub-lang en --skip-download <URL>` and read the downloaded `.vtt` file.
-If you are completely unable to access the link or extract the transcript, politely ask the user to paste the text/transcript.
+If you are completely unable to access the link or extract the transcript, politely ask the user to paste the transcript. DO NOT substitute the actual video transcript with webpage comments or descriptions.
 
 ### Step 2: Load Rules
 Read the translation and summarization rules from the local project files:
@@ -44,7 +44,7 @@ Strictly follow the output format below. Do not add any conversational filler be
 (Generate the summary here according to the respective prompt file, and translate it to Chinese according to `prompts/translate.md`. For YouTube, keep it around 300 words.)
 
 **2、中文原文**
-(Translate the full original tweet or the full YouTube transcript here according to `prompts/translate.md`)
+(Translate the FULL spoken transcript extracted from Step 1 here according to `prompts/translate.md`. For YouTube videos, this MUST be the actual spoken subtitles/transcript from the video, NOT the video description or comments.)
 
 **3、源链接**
 (Insert the exact original URL provided by the user)
